@@ -2,7 +2,7 @@
 body, html, #root {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   background-color: #f4f4f2;
   color: #2e3d2f;
 }
@@ -83,4 +83,83 @@ body, html, #root {
   background-color: #2e3d2f;
   color: white;
   font-size: 0.9rem;
+}
+
+.contact-details {
+  margin-top: 1rem;
+}
+
+.contact-details div {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-details .label {
+  width: 140px;
+  font-weight: bold;
+}
+
+.contact-details .value a {
+  color: #2e6da4; /* Optional: match your theme */
+  text-decoration: none;
+}
+
+.contact-details .value a:hover {
+  text-decoration: underline;
+}
+
+.site-footer {
+  background-color: #355e3b;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.site-footer a {
+  color: #a8e6cf;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.gallery-section {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.image-pair {
+  display: flex;
+  gap: 1rem;
+}
+
+.image-pair img {
+  width: 300px;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.nav-button {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #355e3b;
+}
+
+.nav-button:hover {
+  color: #2e7d32;
 }
