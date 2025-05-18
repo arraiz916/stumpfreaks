@@ -6,6 +6,7 @@ function Estimates() {
     name: '',
     phone: '',
     address: '',
+    comments: '',
     image: null
   });
 
@@ -36,32 +37,35 @@ function Estimates() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    const form = new FormData();
+    form.append('name', formData.name);
+    form.append('phone', formData.phone);
+    form.append('address', formData.address);
+    form.append('description', formData.description);
 
+    if (formData.image) {
+      form.append('image', formData.image);
+    }
+  
     try {
       const response = await fetch('http://localhost:5000/api/estimates', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
-          address: formData.address
-          // image not sent yet
-        })
+        body: form
       });
-
+  
       if (response.ok) {
         alert('✅ Estimate submitted successfully!');
         setFormData({ name: '', phone: '', address: '', image: null });
       } else {
-        alert('❌ Failed to submit estimate. Please try again.');
+        alert('❌ Failed to submit estimate.');
       }
-    } catch (error) {
-      console.error('Submit error:', error);
-      alert('❌ Server error. Try again later.');
+    } catch (err) {
+      console.error('Submit error:', err);
+      alert('❌ Server error.');
     }
   };
+  
 
   return (
     <div className="estimate-container">
@@ -102,6 +106,18 @@ function Estimates() {
             value={formData.address}
             onChange={handleChange}
           />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="description">Description / Comments / Concerns</label>
+          <textarea
+            name="description"
+            id="description"
+            rows="4"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Add any extra details you'd like us to know..."
+            />
         </div>
 
         <div className="form-group">

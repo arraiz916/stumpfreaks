@@ -1,12 +1,17 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import multer from 'multer';
 
 dotenv.config();
 const router = express.Router();
 
-router.post('/', async (req, res) => {
-  const { name, phone, address } = req.body;
+// Use memory storage for uploaded files
+const upload = multer({ storage: multer.memoryStorage() });
+
+router.post('/', upload.single('image'), async (req, res) => {
+  const { name, phone, address, description } = req.body;
+  const image = req.file;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -16,16 +21,26 @@ router.post('/', async (req, res) => {
     }
   });
 
+  const attachments = image
+    ? [{
+        filename: image.originalname,
+        content: image.buffer
+      }]
+    : [];
+
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_TO,
     subject: 'New Estimate Request',
-    text: `Name: ${name}\nPhone: ${phone}\nAddress: ${address}`
+    html: `
+      <h2>New Estimate Request</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Service Address / Area:</strong> ${address}</p>
+      <p><strong>Comments:</strong><br/>${description ? description.replace(/\n/g, '<br/>') : '(none)'}</p>
+    `,
+    attachments
   };
-
-  console.log('EMAIL_USER:', process.env.EMAIL_USER);
-console.log('EMAIL_PASS:', process.env.EMAIL_PASS);
-
 
   try {
     await transporter.sendMail(mailOptions);
