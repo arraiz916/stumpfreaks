@@ -1,0 +1,50 @@
+.estimate-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f4f4f2;
+    padding: 2rem;
+  }
+  
+  .estimate-box {
+    background-color: #9bc59d; /* matching your hero section green */
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .estimate-box h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #2e3d2f;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #2e3d2f;
+  }
+  
+  .form-group input {
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  .form-group input[type="file"] {
+    border: none;
+    font-size: 1rem;
+    background-color: #fff;
+  }
+  

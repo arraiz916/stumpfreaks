@@ -163,3 +163,15 @@ body, html, #root {
 .nav-button:hover {
   color: #2e7d32;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.section-divider {
+  border: none;
+  height: 2px;
+  background-color: #ccc;
+  margin: 3rem 0; /* Top and bottom spacing */
+  width: 100%;
+}

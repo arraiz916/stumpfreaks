@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import Estimates from './pages/Estimates.js';
 
 const slides = [
   { before: "/images/IMG_7710.jpg", after: "/images/IMG_7711.jpg" },
@@ -13,16 +15,22 @@ const slides = [
 
 function App() {
   return (
-    <div className="main-container">
-      <header className="navbar">
-        <div className="logo">🌲 StumpFreaks</div>
-        <nav className="nav-links">
-          <a href="#about">About Us</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
-      <Home />
-    </div>
+    <BrowserRouter>
+      <div className="main-container">
+        <header className="navbar">
+          <div className="logo">🌲 StumpFreaks</div>
+          <nav className="nav-links">
+            <Link to="/">About Us</Link>
+            <Link to="/estimates">Estimates</Link>
+            <a href="/#contact">Contact</a>
+          </nav>
+        </header>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/estimates" element={<Estimates />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
@@ -56,6 +64,9 @@ function Home() {
           StumpFreaks is a locally owned and operated mobile stump grinding service dedicated to helping
           homeowners and businesses clear out<br />unsightly stumps quickly and professionally. We bring our tools to you — no matter where you are!
         </p>
+
+        <hr className="section-divider" />
+
         <h2 id="contact">Contact</h2>
         <div className="contact-details">
           <div><span className="label">Business Owner:</span><span className="value">David Murillo</span></div>
